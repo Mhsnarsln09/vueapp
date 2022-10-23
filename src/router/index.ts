@@ -14,10 +14,15 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       requiresAuth: true,
     },
-
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
   },
+  {
+    path: "/login",
+    name: "login",
+    component: () => import("@/views/LoginView.vue")
+
+  }
 ];
 
 const router = createRouter({
@@ -31,7 +36,7 @@ router.beforeEach((to, from, next) => {
       next();
       return;
     }
-    next("/");
+    next("/login");
   } else {
     next();
   }
