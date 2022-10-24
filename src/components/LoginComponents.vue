@@ -37,7 +37,7 @@
             <v-row class="pa-3">
               <v-spacer> </v-spacer>
               <v-col cols="3">
-                <v-btn type="submit" color="success"> Button </v-btn>
+                <v-btn type="submit" color="success"> Login </v-btn>
               </v-col>
             </v-row>
           </v-form>
@@ -68,9 +68,9 @@ export default defineComponent({
         store.getters.getUser[0].password === this.password
       ) {
         store.state.isAuth = true;
-        this.$router.push({ name: "about" });
+        this.$router.push({ name: "basket" });
       } else {
-        alert("Degerler yanlis!!!!");
+        alert("Email and/or password are wrong !!!");
       }
     },
   },

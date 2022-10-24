@@ -9,20 +9,19 @@ const routes: Array<RouteRecordRaw> = [
     component: HomeView,
   },
   {
-    path: "/about",
-    name: "about",
+    path: "/basket",
+    name: "basket",
     meta: {
       requiresAuth: true,
     },
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+      import(/* webpackChunkName: "about" */ "../views/BasketView.vue"),
   },
   {
     path: "/login",
     name: "login",
-    component: () => import("@/views/LoginView.vue")
-
-  }
+    component: () => import("@/views/LoginView.vue"),
+  },
 ];
 
 const router = createRouter({
