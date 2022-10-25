@@ -65,6 +65,7 @@ export default defineComponent({
     },
     onLogout() {
       store.state.isAuth = false;
+      this.$router.push({ name: "login" });
     },
   },
 });

@@ -68,7 +68,7 @@ export default defineComponent({
         store.getters.getUser[0].password === this.password
       ) {
         store.state.isAuth = true;
-        this.$router.push({ name: "basket" });
+        this.$router.push("/");
       } else {
         alert("Email and/or password are wrong !!!");
       }

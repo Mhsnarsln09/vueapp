@@ -1,18 +1,18 @@
 <template>
- <home-components/>
+  <home-components />
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue";
 
 // Components
-import HomeComponents from "@/components/HomeComponents.vue"
+import HomeComponents from "@/components/HomePage/HomeComponents.vue";
 
 export default defineComponent({
-  name: 'HomeView',
+  name: "HomeView",
 
   components: {
-    HomeComponents
+    HomeComponents,
   },
 });
 </script>

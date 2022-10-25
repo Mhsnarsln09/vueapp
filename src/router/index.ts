@@ -9,6 +9,11 @@ const routes: Array<RouteRecordRaw> = [
     component: HomeView,
   },
   {
+    path: "/login",
+    name: "login",
+    component: () => import("@/views/LoginView.vue"),
+  },
+  {
     path: "/basket",
     name: "basket",
     meta: {
@@ -18,9 +23,12 @@ const routes: Array<RouteRecordRaw> = [
       import(/* webpackChunkName: "about" */ "../views/BasketView.vue"),
   },
   {
-    path: "/login",
-    name: "login",
-    component: () => import("@/views/LoginView.vue"),
+    path: "/detail/:id",
+    name: "detail",
+    meta: {
+      requiresAuth: true,
+    },
+    component: () => import("@/views/CardDetailsView.vue"),
   },
 ];
 

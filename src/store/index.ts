@@ -1,4 +1,6 @@
 import { createStore } from "vuex";
+import axios, { AxiosResponse } from "axios";
+import DataModels from "@/models/DataModels";
 
 export default createStore({
   state: {
@@ -9,6 +11,9 @@ export default createStore({
       },
     ],
     isAuth: false,
+    items: [],
+    cart: [] as any,
+    price: Number,
   },
   getters: {
     getUser(state) {
@@ -17,8 +22,36 @@ export default createStore({
     getAuthInfo(state) {
       return state.isAuth;
     },
+    getItems(state) {
+      return state.items;
+    },
+    getPrice(state) {
+      return state.price;
+    },
   },
-  mutations: {},
-  actions: {},
-  modules: {},
+  mutations: {
+    setItems(state, payload) {
+      state.items = payload;
+    },
+    setToCart(state, payload) {
+      state.cart.push(payload);
+    },
+    setPrice(state, payload) {
+      state.price = payload;
+    },
+  },
+  actions: {
+    setItems(context) {
+      axios
+        .get("https://www.breakingbadapi.com/api/characters")
+        .then((items: AxiosResponse<Array<DataModels>>) => {
+          const data = items.data.slice(0, 10);
+
+          context.commit("setItems", data);
+        });
+    },
+    setPrice(context, price) {
+      context.commit("setPrice", price);
+    },
+  },
 });
