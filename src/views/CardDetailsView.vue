@@ -35,8 +35,9 @@ export default defineComponent({
   },
   mounted() {
     this.data = store.getters.getItems.find((x: DataModels) => {
-      return x.char_id === Number(this.$route.params.id);
+      return x.char_id === Number(this.$route.params.id); 
     });
   },
+  
 });
 </script>

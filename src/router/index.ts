@@ -43,6 +43,7 @@ router.beforeEach((to, from, next) => {
       next();
       return;
     }
+
     next("/login");
   } else {
     next();
