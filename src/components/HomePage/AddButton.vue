@@ -1,16 +1,6 @@
 <template>
-  <div v-if="count" class="d-flex align-center flex-column" size="x-small">
-    <v-btn-toggle variant="outlined" divided style="height: 30px">
-      <v-btn class="bg-error ma-0" size="x-small" @click.stop="onAdd('dec')">
-        -
-      </v-btn>
-      <v-btn size="x-small" class="ma-0" @click.stop="">
-        {{ count }}
-      </v-btn>
-      <v-btn class="bg-success ma-0" size="x-small" @click.stop="onAdd('inc')">
-        +
-      </v-btn>
-    </v-btn-toggle>
+  <div v-if="count" class="d-flex align-center flex-column" >
+   <add-button-group :count="count" @onAdd="onAdd"></add-button-group>
   </div>
   <div v-else>
     <v-btn color="white" class="bg-secondary" @click.stop="onAdd('inc')">
@@ -21,9 +11,13 @@
 
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
+import AddButtonGroup from "./AddButtonGroup.vue"
 
 export default defineComponent({
   props: ["items"],
+  components:{
+    AddButtonGroup
+  },
   data() {
     return { count: 0 };
   },

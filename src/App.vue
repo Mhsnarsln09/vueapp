@@ -10,6 +10,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import HeaderLay from "@/components/layout/HeaderComponents.vue"
+import store from './store';
 
 export default defineComponent({
   name: 'App',
@@ -21,6 +22,9 @@ export default defineComponent({
   },
   components:{
     HeaderLay
+  },
+  created(){
+    store.dispatch("setItems");
   }
 })
 </script>

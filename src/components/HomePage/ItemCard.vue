@@ -45,7 +45,6 @@ export default defineComponent({
     ...mapGetters(["getItems"]),
   },
   created() {
-    store.dispatch("setItems");
     store.dispatch("setPrice", this.price);
   },
 });
