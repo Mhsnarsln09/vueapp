@@ -12,7 +12,7 @@ export default createStore({
     ],
     isAuth: false,
     items: [],
-    cart: [] as any,
+    basket: [] as Array<DataModels>,
     price: Number,
   },
   getters: {
@@ -33,8 +33,8 @@ export default createStore({
     setItems(state, payload) {
       state.items = payload;
     },
-    setToCart(state, payload) {
-      state.cart.push(payload);
+    setToBasket(state, payload) {
+      state.basket.push(payload);
     },
     setPrice(state, payload) {
       state.price = payload;

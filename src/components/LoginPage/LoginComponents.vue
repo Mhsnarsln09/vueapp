@@ -60,6 +60,7 @@ export default defineComponent({
       password: 0,
     };
   },
+
   methods: {
     onLogin() {
       if (
@@ -67,7 +68,6 @@ export default defineComponent({
         store.getters.getUser[0].password === this.password
       ) {
         store.state.isAuth = true;
-
         this.$router.push(this.$route.redirectedFrom?.fullPath ?? "/");
       } else {
         alert("Email and/or password are wrong !!!");

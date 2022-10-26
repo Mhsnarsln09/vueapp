@@ -2,7 +2,9 @@
   <v-card>
     <v-layout>
       <v-app-bar color="primary">
-        <v-toolbar-title>Vue APP</v-toolbar-title>
+        <v-btn @click.stop="onDirection(0)">
+          <v-toolbar-title>APP</v-toolbar-title></v-btn
+        >
         <v-spacer></v-spacer>
         <v-col cols="auto">
           <v-row no-gutters>

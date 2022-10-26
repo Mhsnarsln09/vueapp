@@ -1,6 +1,6 @@
 export default class DataModels {
   appearance: Array<number>;
-  better_call_saul_appearance: Array<unknown>;
+  better_call_saul_appearance: Array<string> | null;
   birthday: string;
   category: string;
   char_id: number;
@@ -10,10 +10,10 @@ export default class DataModels {
   occupation: Array<string>;
   portrayed: string;
   status: string;
-
+  quantity: number;
   constructor() {
     this.appearance = [];
-    this.better_call_saul_appearance = [];
+    this.better_call_saul_appearance = null;
     this.birthday = "";
     this.category = "";
     this.char_id = 0;
@@ -23,5 +23,6 @@ export default class DataModels {
     this.occupation = [];
     this.portrayed = "";
     this.status = "";
+    this.quantity = 0;
   }
 }
