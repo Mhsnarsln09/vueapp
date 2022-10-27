@@ -5,7 +5,7 @@
         <v-app>
           <v-table>
             <tbody>
-              <tr v-for="item in getBasket" :key="item.name">
+              <tr v-for="(item, i) in total" :key="item.name">
                 <td>
                   <img :src="item.img" style="height: 75px; width: 75px" />
                 </td>
@@ -15,7 +15,9 @@
                     <add-button-group :items="item" />
                   </KeepAlive>
                 </td>
-                <td>{{ item.nickname }}</td>
+                <td style="border: 1px solid red">
+                  {{ total[i].quantity * total[i].quantity }}
+                </td>
               </tr>
             </tbody>
           </v-table>
@@ -27,8 +29,10 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { mapGetters } from "vuex";
-import AddButtonGroup from "@/components/HomePage/AddButtonGroup.vue";
+
+import store from "@/store";
+import AddButtonGroup from "@/components/Buttons/AddButtonGroup.vue";
+
 export default defineComponent({
   components: {
     AddButtonGroup,
@@ -38,9 +42,10 @@ export default defineComponent({
       //
     };
   },
-
   computed: {
-    ...mapGetters(["getBasket"]),
+    total() {
+      return store.getters.getBasket;
+    },
   },
 });
 </script>

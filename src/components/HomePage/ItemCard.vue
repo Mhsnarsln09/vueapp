@@ -25,7 +25,7 @@
 import { defineComponent } from "vue";
 import store from "@/store";
 import { mapGetters } from "vuex";
-import AddButton from "./AddButton.vue";
+import AddButton from "@/components/Buttons/AddButton.vue";
 
 export default defineComponent({
   components: {
