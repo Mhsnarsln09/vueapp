@@ -44,8 +44,10 @@ export default createStore({
 
       if (data && data.quantity <= 4) {
         data.quantity++;
-      } else {
+      } else if (!data?.quantity) {
         state.basket.push({ ...payload, quantity: 1 });
+      } else {
+        alert("too much")
       }
     },
     removeFromCart(state, payload) {

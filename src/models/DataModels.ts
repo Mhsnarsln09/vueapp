@@ -11,6 +11,7 @@ export default class DataModels {
   portrayed: string;
   status: string;
   quantity: number;
+
   constructor() {
     this.appearance = [];
     this.better_call_saul_appearance = null;

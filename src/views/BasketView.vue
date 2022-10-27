@@ -2,10 +2,13 @@
   <v-container>
     <v-row>
       <v-col>
-        <v-app>
-          <v-table>
-            <tbody>
-              <tr v-for="(item, i) in total" :key="item.name">
+        <div v-if="total.length === 0">
+          <h3>You haven't any items.</h3>
+        </div>
+        <v-app v-else >
+          <v-table >
+            <tbody >
+              <tr v-for="(item, i) in total" :key="item.name" class="ma-2">
                 <td>
                   <img :src="item.img" style="height: 75px; width: 75px" />
                 </td>
@@ -15,9 +18,7 @@
                     <add-button-group :items="item" />
                   </KeepAlive>
                 </td>
-                <td style="border: 1px solid red">
-                  {{ total[i].quantity * total[i].quantity }}
-                </td>
+                <td>Total Price:{{ total[i].quantity * getPrice }}</td>
               </tr>
             </tbody>
           </v-table>
@@ -32,6 +33,7 @@ import { defineComponent } from "vue";
 
 import store from "@/store";
 import AddButtonGroup from "@/components/Buttons/AddButtonGroup.vue";
+import { mapGetters } from "vuex";
 
 export default defineComponent({
   components: {
@@ -43,6 +45,7 @@ export default defineComponent({
     };
   },
   computed: {
+    ...mapGetters(["getPrice"]),
     total() {
       return store.getters.getBasket;
     },
