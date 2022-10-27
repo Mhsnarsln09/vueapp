@@ -28,16 +28,40 @@ export default createStore({
     getPrice(state) {
       return state.price;
     },
+    getBasket(state) {
+      return state.basket;
+    },
   },
   mutations: {
     setItems(state, payload) {
       state.items = payload;
     },
-    setToBasket(state, payload) {
-      state.basket.push(payload);
-    },
     setPrice(state, payload) {
       state.price = payload;
+    },
+    addToCart(state, payload) {
+      const data = state.basket.find((i) => i.char_id === payload.char_id);
+
+      if (data) {
+        data.quantity++;
+      } else {
+        state.basket.push({ ...payload, quantity: 1 });
+      }
+    },
+    removeFromCart(state, payload) {
+      const data = state.basket.find((i) => i.char_id === payload.char_id);
+      console.log("payload", payload.char_id);
+
+      if (data) {
+        if (data.quantity > 1) {
+          data.quantity--;
+          console.log("payload_data", payload.char_id);
+        } else {
+          state.basket = state.basket.filter(
+            (i) => i.char_id !== payload.char_id
+          );
+        }
+      }
     },
   },
   actions: {

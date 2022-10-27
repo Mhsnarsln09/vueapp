@@ -5,13 +5,16 @@
         <v-app>
           <v-table>
             <tbody>
-              <tr v-for="item in getItems.splice(0,1)" :key="item.name">
+              <tr v-for="item in getBasket" :key="item.name">
                 <td>
                   <img :src="item.img" style="height: 75px; width: 75px" />
                 </td>
                 <td>{{ item.name }}</td>
                 <td>
-                  <add-button-group/>
+                  <add-button-group
+                    :counterValue="item.quantity"
+                    @onAdd="onAdd"
+                  />
                 </td>
                 <td>{{ item.nickname }}</td>
               </tr>
@@ -26,25 +29,31 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { mapGetters } from "vuex";
+import AddButtonGroup from "@/components/HomePage/AddButtonGroup.vue";
 import store from "@/store";
-import AddButtonGroup from "@/components/HomePage/AddButtonGroup.vue"
 export default defineComponent({
-  components:{
-    AddButtonGroup
+  components: {
+    AddButtonGroup,
   },
   data() {
     return {
-      // 
+      //
     };
   },
   methods: {
-    onLog() {
-      console.log("getItems", this.getItems);
-      console.log("store.getters", store.state.items);
+    onAdd(i: string) {
+      if (i === "inc") {
+        store.commit("addToCart", this.getBasket);
+      } else {
+        store.commit("removeFromCart", this.getBasket);
+        console.log("basket", this.getBasket);
+
+        console.log("works");
+      }
     },
   },
   computed: {
-    ...mapGetters(["getItems"]),
+    ...mapGetters(["getBasket"]),
   },
 });
 </script>

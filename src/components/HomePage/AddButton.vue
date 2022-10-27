@@ -1,6 +1,9 @@
 <template>
-  <div v-if="count" class="d-flex align-center flex-column" >
-   <add-button-group :count="count" @onAdd="onAdd"></add-button-group>
+  <div v-if="count" class="d-flex align-center flex-column">
+    <add-button-group
+      :counterValue="counterValue"
+      @onAdd="onAdd"
+    ></add-button-group>
   </div>
   <div v-else>
     <v-btn color="white" class="bg-secondary" @click.stop="onAdd('inc')">
@@ -10,30 +13,40 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/runtime-core";
-import AddButtonGroup from "./AddButtonGroup.vue"
+import { defineComponent } from "vue";
+import AddButtonGroup from "./AddButtonGroup.vue";
+import store from "@/store";
 
 export default defineComponent({
   props: ["items"],
-  components:{
-    AddButtonGroup
+  components: {
+    AddButtonGroup,
   },
   data() {
-    return { count: 0 };
+    return {
+      counterValue: 0 as any,
+    };
   },
-
+  computed: {
+    count() {
+      return store.state.basket.find((i) => i.char_id === this.items.char_id)
+        ?.quantity;
+    },
+  },
   methods: {
     onAdd(i: string) {
       if (i === "inc") {
-        if (this.count < 5) {
-          this.count++;
-          console.log("items", this.items);
-        } else {
-          alert("too much");
-        }
+        store.commit("addToCart", this.items);
       } else {
-        this.count--;
+        store.commit("removeFromCart", this.items);
       }
+    },
+  },
+  watch: {
+    count() {
+      this.counterValue = store.state.basket.find(
+        (i) => i.char_id === this.items.char_id
+      )?.quantity;
     },
   },
 });
