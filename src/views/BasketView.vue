@@ -11,10 +11,9 @@
                 </td>
                 <td>{{ item.name }}</td>
                 <td>
-                  <add-button-group
-                    :counterValue="item.quantity"
-                    @onAdd="onAdd"
-                  />
+                  <KeepAlive>
+                    <add-button-group :items="item" />
+                  </KeepAlive>
                 </td>
                 <td>{{ item.nickname }}</td>
               </tr>
@@ -30,7 +29,6 @@
 import { defineComponent } from "vue";
 import { mapGetters } from "vuex";
 import AddButtonGroup from "@/components/HomePage/AddButtonGroup.vue";
-import store from "@/store";
 export default defineComponent({
   components: {
     AddButtonGroup,
@@ -40,18 +38,7 @@ export default defineComponent({
       //
     };
   },
-  methods: {
-    onAdd(i: string) {
-      if (i === "inc") {
-        store.commit("addToCart", this.getBasket);
-      } else {
-        store.commit("removeFromCart", this.getBasket);
-        console.log("basket", this.getBasket);
 
-        console.log("works");
-      }
-    },
-  },
   computed: {
     ...mapGetters(["getBasket"]),
   },

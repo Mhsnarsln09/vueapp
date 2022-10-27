@@ -42,7 +42,7 @@ export default createStore({
     addToCart(state, payload) {
       const data = state.basket.find((i) => i.char_id === payload.char_id);
 
-      if (data) {
+      if (data && data.quantity <= 4) {
         data.quantity++;
       } else {
         state.basket.push({ ...payload, quantity: 1 });
@@ -50,12 +50,10 @@ export default createStore({
     },
     removeFromCart(state, payload) {
       const data = state.basket.find((i) => i.char_id === payload.char_id);
-      console.log("payload", payload.char_id);
 
       if (data) {
         if (data.quantity > 1) {
           data.quantity--;
-          console.log("payload_data", payload.char_id);
         } else {
           state.basket = state.basket.filter(
             (i) => i.char_id !== payload.char_id

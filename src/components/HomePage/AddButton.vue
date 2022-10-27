@@ -1,12 +1,11 @@
 <template>
-  <div v-if="count" class="d-flex align-center flex-column">
-    <add-button-group
-      :counterValue="counterValue"
-      @onAdd="onAdd"
-    ></add-button-group>
+  <div v-if="count?.char_id" class="d-flex align-center flex-column">
+    <KeepAlive>
+      <add-button-group :items="count"></add-button-group>
+    </KeepAlive>
   </div>
   <div v-else>
-    <v-btn color="white" class="bg-secondary" @click.stop="onAdd('inc')">
+    <v-btn color="white" class="bg-secondary" @click.stop="onAdd">
       <span class="text-white">Add</span>
     </v-btn>
   </div>
@@ -24,29 +23,17 @@ export default defineComponent({
   },
   data() {
     return {
-      counterValue: 0 as any,
+      //
     };
   },
   computed: {
     count() {
-      return store.state.basket.find((i) => i.char_id === this.items.char_id)
-        ?.quantity;
+      return store.state.basket.find((i) => i.char_id == this.items.char_id);
     },
   },
   methods: {
-    onAdd(i: string) {
-      if (i === "inc") {
-        store.commit("addToCart", this.items);
-      } else {
-        store.commit("removeFromCart", this.items);
-      }
-    },
-  },
-  watch: {
-    count() {
-      this.counterValue = store.state.basket.find(
-        (i) => i.char_id === this.items.char_id
-      )?.quantity;
+    onAdd() {
+      store.commit("addToCart", this.items);
     },
   },
 });

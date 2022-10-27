@@ -4,7 +4,7 @@
       -
     </v-btn>
     <v-btn size="x-small" class="ma-0" @click.stop="">
-      {{ counterValue }}
+      {{ items.quantity }}
     </v-btn>
     <v-btn class="bg-success ma-0" size="x-small" @click.stop="onAdd('inc')">
       +
@@ -14,16 +14,21 @@
 
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
+import store from "@/store";
 export default defineComponent({
-  props: ["counterValue"],
+  props: ["items"],
   data() {
     return {
       //
     };
   },
   methods: {
-    onAdd(value: string) {
-      this.$emit("onAdd", value);
+    onAdd(i: string) {
+      if (i === "inc") {
+        store.commit("addToCart", this.items);
+      } else {
+        store.commit("removeFromCart", this.items);
+      }
     },
   },
 });
