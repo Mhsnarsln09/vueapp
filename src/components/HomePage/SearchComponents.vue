@@ -39,3 +39,12 @@ import { defineComponent } from "@vue/runtime-core"
     },
   })
 </script>
+<!-- filtered() {
+    if (this.searchText.length >= 1) {
+      const fixSearchText = this.searchText.toLowerCase().trim();
+      return this.debtList.filter((item) =>
+        item.name.toLowerCase().trim().includes(fixSearchText)
+      );
+    } else {
+      return this.debtList;
+    } -->

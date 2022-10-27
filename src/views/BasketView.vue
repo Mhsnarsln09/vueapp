@@ -52,8 +52,5 @@ export default defineComponent({
     ...mapGetters(["getPrice"]),
    ...mapGetters(["getBasket"])
   },
-  mounted(){
-    console.log("basket", this.getBasket)
-  }
 });
 </script>
