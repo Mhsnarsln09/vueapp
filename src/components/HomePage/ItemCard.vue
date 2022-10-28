@@ -1,6 +1,6 @@
 <template>
   <v-row no-gutters>
-    <v-col v-for="(items, i) in getItems" :key="i" sm="4" lg="3">
+    <v-col v-for="(items, i) in data" :key="i" sm="4" lg="3">
       <v-card
         class="ma-4"
         max-width="344"
@@ -24,10 +24,10 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import store from "@/store";
-import { mapGetters } from "vuex";
 import AddButton from "@/components/Buttons/AddButton.vue";
 
 export default defineComponent({
+  props: ["searching"],
   components: {
     AddButton,
   },
@@ -42,7 +42,16 @@ export default defineComponent({
     },
   },
   computed: {
-    ...mapGetters(["getItems"]),
+    data() {
+      if (this.searching.length >= 3) {
+        const fixSearch = this.searching.toLowerCase().trim();
+        return store.getters.getItems.filter((x: any ) =>
+          x.name.toLowerCase().trim().includes(fixSearch)
+        );
+      } else {
+        return store.getters.getItems;
+      }
+    },
   },
   created() {
     store.dispatch("setPrice", this.price);

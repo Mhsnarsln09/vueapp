@@ -1,50 +1,41 @@
 <template>
-    <v-card
-      class="mx-auto"
-      color="grey-lighten-3"
-      max-width="500"
-    >
-      <v-card-text>
-        <v-text-field
-          :loading="loading"
-          density="compact"
-          variant="solo"
-          label="Search templates"
-          append-inner-icon="mdi-magnify"
-          single-line
-          hide-details
-          @click:append-inner="onClick"
-        ></v-text-field>
-      </v-card-text>
-    </v-card>
-  </template>
+  <v-container>
+    <v-row>
+      <v-col cols="10">
+        <div
+          style="
+            border: 1px solid black;
+            width: 100%;
+            outline: none;
+            cursor: pointer;
+          "
+          class="ma-auto rounded-pill pa-2 d-flex"
+        >
+          <input
+            type="text"
+            placeholder="Search"
+            v-model="searchText"
+            class="pa-1 rounded-pill"
+            style="width: 100%; outline: none"
+          />
+          <span class="mdi mdi-magnify mdi-24px pa-1" size="lg"></span>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
+</template>
   <script lang="ts">
-import { defineComponent } from "@vue/runtime-core"
 
-  export default defineComponent( {
-    data: () => ({
-      loaded: false,
-      loading: false,
-    }),
+import { defineComponent } from "@vue/runtime-core";
 
-    methods: {
-      onClick () {
-        this.loading = true
-
-        setTimeout(() => {
-          this.loading = false
-          this.loaded = true
-        }, 2000)
-      },
-    },
-  })
+export default defineComponent({
+  data: () => ({
+    searchText: "",
+  }), 
+  watch:{
+    searchText(){
+     this.$emit('searchText', this.searchText)
+    }
+  }   
+});
 </script>
-<!-- filtered() {
-    if (this.searchText.length >= 1) {
-      const fixSearchText = this.searchText.toLowerCase().trim();
-      return this.debtList.filter((item) =>
-        item.name.toLowerCase().trim().includes(fixSearchText)
-      );
-    } else {
-      return this.debtList;
-    } -->
