@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="10">
+      <v-col cols="11">
         <div
           style="
             border: 1px solid black;
@@ -21,6 +21,7 @@
           <span class="mdi mdi-magnify mdi-24px pa-1" size="lg"></span>
         </div>
       </v-col>
+      <v-col cols="1"><v-btn class="h-100 w-25 pa-1"><span class="mdi mdi-filter mdi-24px"></span></v-btn></v-col>
     </v-row>
   </v-container>
 </template>
