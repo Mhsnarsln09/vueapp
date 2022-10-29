@@ -45,7 +45,7 @@ export default defineComponent({
     data() {
       if (this.searching.length >= 3) {
         const fixSearch = this.searching.toLowerCase().trim();
-        return store.getters.getItems.filter((x: any ) =>
+        return store.getters.getItems.filter((x: any) =>
           x.name.toLowerCase().trim().includes(fixSearch)
         );
       } else {

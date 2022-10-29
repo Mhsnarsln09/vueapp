@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card style="position: sticky; top: 0; z-index: 1">
     <v-layout>
       <v-app-bar color="primary">
         <v-btn @click.stop="onDirection(0)">
@@ -15,7 +15,14 @@
               )"
               :key="i"
             >
-              <v-btn @click="onDirection(i)">{{ item.name }}</v-btn>
+              <v-btn @click="onDirection(i)"
+                >{{ item.name }}
+                <div :class="item.class" v-if="getBasket.length">
+                  <span class="bg-red rounded-circle ma-1 pa-1">
+                    {{ getBasket.length }}</span
+                  >
+                </div>
+              </v-btn>
             </v-col>
             <v-col cols="auto">
               <v-btn v-if="getAuthInfo" @click="onLogout">
@@ -42,23 +49,23 @@ export default defineComponent({
         {
           id: 1,
           name: "home",
-          auth: true,
+          class: "d-none",
         },
         {
           id: 2,
           name: "basket",
-          auth: true,
+          class: "d-block",
         },
         {
           id: 3,
           name: "login",
-          auth: false,
+          class: "d-none",
         },
       ],
     };
   },
   computed: {
-    ...mapGetters(["getAuthInfo"]),
+    ...mapGetters(["getAuthInfo", "getBasket"]),
   },
   methods: {
     onDirection(i: number) {

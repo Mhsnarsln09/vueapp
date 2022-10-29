@@ -16,9 +16,9 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/basket",
     name: "basket",
-    // meta: {
-    //   requiresAuth: true,
-    // },
+    meta: {
+      requiresAuth: true,
+    },
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/BasketView.vue"),
   },
