@@ -5,8 +5,8 @@
         <div v-if="getBasket.length === 0">
           <h3>You haven't any items.</h3>
         </div>
-        <v-app v-else >
-          <v-table >
+        <v-app v-else style="z-index:0 !important;">
+          <v-table  >
             <tbody >
               <tr v-for="(item, i) in getBasket" :key="item.name" class="ma-2">
                 <td>
@@ -25,7 +25,7 @@
            
           </v-table>
           <div class="d-flex justify-end text-left mr-16">
-            <h4>TotalPrice</h4>
+            <h4 >Total Price: {{totalPrice}} TL</h4>
           </div>
         </v-app>
       </v-col>
@@ -38,6 +38,7 @@ import { defineComponent } from "vue";
 
 import AddButtonGroup from "@/components/Buttons/AddButtonGroup.vue";
 import { mapGetters } from "vuex";
+import store from "@/store";
 
 export default defineComponent({
   components: {
@@ -50,7 +51,23 @@ export default defineComponent({
   },
   computed: {
     ...mapGetters(["getPrice"]),
-   ...mapGetters(["getBasket"])
+   ...mapGetters(["getBasket"]),
+   totalPrice(){
+      let price = 0
+     store.getters.getBasket.forEach((x:any)  =>{
+      price += x.quantity * store.getters.getPrice       
+      })
+      return price
+    }
+
+   
   },
+  methods:{
+   
+  }
+ 
 });
 </script>
+<!-- .forEach(x => {
+  
+}) -->

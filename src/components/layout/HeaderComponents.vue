@@ -1,5 +1,5 @@
 <template>
-  <v-card style="position: sticky; top: 0; z-index: 1">
+  <v-card style="position: sticky; top: 0; z-index: 2">
     <v-layout>
       <v-app-bar color="primary">
         <v-btn @click.stop="onDirection(0)">

@@ -18,6 +18,11 @@
         </v-card-actions>
       </v-card>
     </v-col>
+    <v-col v-if="!data.length">
+      <div class="d-flex justify-center align-center h-100">
+        <h3>Item Not Found</h3>
+      </div>
+    </v-col>
   </v-row>
 </template>
 

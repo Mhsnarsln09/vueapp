@@ -22,7 +22,7 @@
         </div>
       </v-col>
       <v-col cols="1">
-        <sort-button-component class="h-100 w-25 pa-1 ma-1"/>
+        <sort-button-component class="h-100 w-25 pa-1 ml-1"/>
       </v-col>
     </v-row>
   </v-container>
