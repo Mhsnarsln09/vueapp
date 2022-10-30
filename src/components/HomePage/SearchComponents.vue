@@ -21,15 +21,20 @@
           <span class="mdi mdi-magnify mdi-24px pa-1" size="lg"></span>
         </div>
       </v-col>
-      <v-col cols="1"><v-btn class="h-100 w-25 pa-1"><span class="mdi mdi-filter mdi-24px"></span></v-btn></v-col>
+      <v-col cols="1">
+        <sort-button-component class="h-100 w-25 pa-1 ma-1"/>
+      </v-col>
     </v-row>
   </v-container>
 </template>
   <script lang="ts">
 
 import { defineComponent } from "@vue/runtime-core";
-
+import SortButtonComponent from "../Buttons/SortButtonComponent.vue"
 export default defineComponent({
+  components:{
+    SortButtonComponent
+  },
   data: () => ({
     searchText: "",
   }), 

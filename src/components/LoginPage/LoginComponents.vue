@@ -1,5 +1,5 @@
 <template>
-  <v-container class="d-flex align-center" style="height: 100%">
+  <v-container class="d-flex align-center" style="height: 100%; width: 75%;">
     <v-row class="d-flex justify-center align-center">
       <v-col cols="6">
         <v-card>
@@ -36,7 +36,7 @@
             </v-row>
             <v-row class="pa-3">
               <v-spacer> </v-spacer>
-              <v-col cols="3">
+              <v-col cols="4" style="text-align:end">
                 <v-btn type="submit" color="success"> Login </v-btn>
               </v-col>
             </v-row>
