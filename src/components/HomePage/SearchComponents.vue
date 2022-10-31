@@ -22,7 +22,7 @@
         </div>
       </v-col>
       <v-col cols="1">
-        <sort-button-component class="h-100 w-25 pa-1 ml-1"/>
+        <sort-button-component class="h-100 w-25 pa-1 ml-1" @sortData="sortData"/>
       </v-col>
     </v-row>
   </v-container>
@@ -38,6 +38,11 @@ export default defineComponent({
   data: () => ({
     searchText: "",
   }), 
+  methods:{
+    sortData(value:string){      
+      this.$emit("sortData" , value)
+    }
+  },
   watch:{
     searchText(){
      this.$emit('searchText', this.searchText)

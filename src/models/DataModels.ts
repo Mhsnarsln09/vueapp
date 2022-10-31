@@ -1,17 +1,4 @@
 export default class DataModels {
-  appearance: Array<number>;
-  better_call_saul_appearance: Array<string> | null;
-  birthday: string;
-  category: string;
-  char_id: number;
-  img: string;
-  name: string;
-  nickname: string;
-  occupation: Array<string>;
-  portrayed: string;
-  status: string;
-  quantity: number;
-
   constructor() {
     this.appearance = [];
     this.better_call_saul_appearance = null;
@@ -26,4 +13,18 @@ export default class DataModels {
     this.status = "";
     this.quantity = 0;
   }
+  appearance: Array<number>;
+  better_call_saul_appearance: Array<string> | null;
+  birthday: string;
+  category: string;
+  char_id: number;
+  img: string;
+  name: string;
+  nickname: string;
+  occupation: Array<string>;
+  portrayed: string;
+  status: string;
+  quantity: number;
+
+
 }

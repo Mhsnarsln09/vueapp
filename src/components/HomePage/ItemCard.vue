@@ -30,9 +30,10 @@
 import { defineComponent } from "vue";
 import store from "@/store";
 import AddButton from "@/components/Buttons/AddButton.vue";
+import DataModels from "@/models/DataModels";
 
 export default defineComponent({
-  props: ["searching"],
+  props: ["searching", "sort"],
   components: {
     AddButton,
   },
@@ -50,11 +51,18 @@ export default defineComponent({
     data() {
       if (this.searching.length >= 3) {
         const fixSearch = this.searching.toLowerCase().trim();
-        return store.getters.getItems.filter((x: any) =>
+        return store.getters.getItems.filter((x: DataModels) =>
           x.name.toLowerCase().trim().includes(fixSearch)
         );
-      } else {
-        return store.getters.getItems;
+      }
+      else if(this.sort === "sortAZ"){
+        return store.getters.getItems.sort((a:DataModels,b:DataModels) => a.name.localeCompare(b.name))
+      } 
+      else if(this.sort === "sortZA"){
+        return store.getters.getItems.sort((a:DataModels,b:DataModels) => b.name.localeCompare(a.name))
+      } 
+      else {
+        return store.getters.getItems.sort((a:DataModels, b: DataModels)=> a.char_id-b.char_id);
       }
     },
   },

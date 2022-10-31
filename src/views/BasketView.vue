@@ -68,6 +68,3 @@ export default defineComponent({
  
 });
 </script>
-<!-- .forEach(x => {
-  
-}) -->

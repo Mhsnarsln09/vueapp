@@ -2,8 +2,8 @@
   <v-container>
     <v-row>
       <v-col>
-        <search-components @searchText="searchText" />
-        <item-card :searching="searching"></item-card>
+        <search-components @searchText="searchText" @sortData="sortData" />
+        <item-card :searching="searching" :sort="sort" ></item-card>
       </v-col>
     </v-row>
   </v-container>
@@ -22,12 +22,16 @@ export default defineComponent({
   },
   data(){
     return {
-      searching:""
+      searching:"",
+      sort:""
     }
   },
  methods:{
   searchText(value:string){
 this.searching = value
+  },
+  sortData(value:string){
+    this.sort = value     
   }
  }
   });

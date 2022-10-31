@@ -9,7 +9,7 @@
 
       <v-list style="cursor: pointer">
         <v-list-item v-for="(item, i) in items" :key="i">
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
+          <v-list-item-title @click.prevent="sortData(item.sort)">{{ item.title }}</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-menu>
@@ -21,7 +21,12 @@ import { defineComponent } from "@vue/runtime-core";
 
 export default defineComponent({
   data: () => ({
-    items: [{ title: "A-Z" }, { title: "Z-A" }],
+    items: [{ title: "Default", sort: "default"},{ title: "A-Z", sort: "sortAZ"}, { title: "Z-A", sort:"sortZA" }],
   }),
+  methods:{
+    sortData(value:string){
+      this.$emit("sortData", value)
+  }
+}
 });
 </script>
