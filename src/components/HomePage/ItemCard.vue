@@ -18,7 +18,7 @@
         </v-card-actions>
       </v-card>
     </v-col>
-    <v-col v-if="!dataItem.length">
+    <v-col v-if="!dataItem.length && searching.length">
       <div class="d-flex justify-center align-center h-100">
         <h3>Item Not Found</h3>
       </div>
