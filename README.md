@@ -2,7 +2,7 @@
 
 <h4>Breakin Bad API</h4>
 <h4>E-Commerce</h4>
-
+<hr/>
 <ul>
 <li>TypeScript</li>
 <li>Vue/Cli</li>
