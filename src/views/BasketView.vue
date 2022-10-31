@@ -39,6 +39,7 @@ import { defineComponent } from "vue";
 import AddButtonGroup from "@/components/Buttons/AddButtonGroup.vue";
 import { mapGetters } from "vuex";
 import store from "@/store";
+import DataModels from "@/models/DataModels";
 
 export default defineComponent({
   components: {
@@ -54,7 +55,7 @@ export default defineComponent({
    ...mapGetters(["getBasket"]),
    totalPrice(){
       let price = 0
-     store.getters.getBasket.forEach((x:any)  =>{
+     store.getters.getBasket.forEach((x:DataModels)  =>{
       price += x.quantity * store.getters.getPrice       
       })
       return price

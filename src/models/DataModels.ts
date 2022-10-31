@@ -25,6 +25,4 @@ export default class DataModels {
   portrayed: string;
   status: string;
   quantity: number;
-
-
 }

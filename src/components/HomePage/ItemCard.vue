@@ -1,6 +1,6 @@
 <template>
   <v-row no-gutters>
-    <v-col v-for="(items, i) in data" :key="i" sm="4" lg="3">
+    <v-col v-for="(items, i) in dataItem" :key="i" sm="4" lg="3">
       <v-card
         class="ma-4"
         max-width="344"
@@ -18,7 +18,7 @@
         </v-card-actions>
       </v-card>
     </v-col>
-    <v-col v-if="!data.length">
+    <v-col v-if="!dataItem.length">
       <div class="d-flex justify-center align-center h-100">
         <h3>Item Not Found</h3>
       </div>
@@ -48,11 +48,11 @@ export default defineComponent({
     },
   },
   computed: {
-    data() {
+    dataItem() {
       if (this.searching.length >= 3) {
-        const fixSearch = this.searching.toLowerCase().trim();
+        const fixSearch = this.searching.toLowerCase().replace(/\s/g, "");
         return store.getters.getItems.filter((x: DataModels) =>
-          x.name.toLowerCase().trim().includes(fixSearch)
+          x.name.toLowerCase().replace(/\s/g, "").includes(fixSearch)
         );
       }
       else if(this.sort === "sortAZ"){
